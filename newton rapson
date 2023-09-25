@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#include<conio.h>
+#define f(x) (x*x -2*x-3*cos(x ))
+#define df(x) (2*x -2 +3*sin(x))
+#define e 0.001
+int main()
+{
+    float x0,x1,f0,df0,f1;
+    int i=0;
+    printf("enter the value of x0=");
+    scanf("%f",&x0);
+    do{
+        f0=f(x0);
+        df0=df(x0);
+        x1=x0-f0/df0;
+        f1=f(x1);
+        x0=x1;
+        i++;
+        printf("Iteration=%d \t",i);
+        printf("value of root=%f \t",x1);
+        printf("valueof function =%f \t",f1);
+    }
+    while(fabs(f1)>e);
+    return 0;
+}
