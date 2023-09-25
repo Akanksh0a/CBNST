@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+double f(double x)
+{
+    return x*x*x-2*x-5;
+}
+ void regular_falsi(double a,double b,double e)
+ {
+     if(f(a)*f(b)>0)
+     {
+         printf("invalid guess");
+     }
+     else
+     {
+         int i=1;
+         double c;
+         while((b-a)>e)
+         {
+         
+         if(i<15)
+         {
+             c=(a*f(b)-b*f(a))/(f(b)-f(a));
+             printf("Iteration %d  c= %lf f(c)=%lf \n",i,c,f(c));
+             i++;
+         }
+         else 
+         break;
+         if(f(a)*f(c)<0)
+         b=c;
+         if(f(b)*f(c)<0)
+         a=c;
+         }
+         printf("approximate value of root= %lf \n",c);
+     }
+ }
+ 
+int main()
+{
+    double a,b,e;
+    printf("the given equation is:x*x*x-2*x-5=0 \n");
+    printf("enter the values of a and b (guess):");
+    scanf("%lf %lf",&a,&b);
+    printf("enter the precision value=e.g 0.01,0.001,0.0001 etc:");
+    scanf("%lf",&e);
+    regular_falsi(a,b,e);
+    return 0;
+}
