@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+double f(double x)
+{
+    return x-cos(x);
+}
+void bisection(double a,double b,double e)
+{
+    double x2;
+    int i=1;
+    if(f(a)*f(b)>0)
+    printf("invalid guess");
+    else
+    {
+        while((b-a)>e)
+        {
+            x2=(a+b)/2;
+            printf("Iteration % d x2=%lf \n",i,x2);
+            i++;
+            if(f(x2)==0.0)
+            break;
+            else if(f(a)*f(x2)<0)
+            b=x2;
+            else
+            a=x2;
+        }
+        printf(" the root of equation is=%lf",x2);
+    }
+}
+int main()
+{
+    double a,b,e;
+    printf("the given equation is:x-cos(x)=0 \n");
+    printf("enter the values of a and b (guess):");
+    scanf("%lf %lf",&a,&b);
+    printf("enter the precision value=e.g 0.01,0.001,0.0001 etc:");
+    scanf("%lf",&e);
+    bisection(a,b,e);
+    return 0;
+}
